@@ -2,6 +2,7 @@ import Disappearance from "../../entities/Disappearance";
 import DisappearancePlace from "../../entities/DisappearencePlace";
 import { Provinces } from "../../entities/Provinces";
 import State from "../../entities/State";
+import TypeDocument from "../../entities/TypeDocument";
 import { IDisappearanceRepository } from "../../repositories/IDisappearanceRepository";
 
 interface IRequest {
@@ -23,6 +24,9 @@ export class CreateDisappearanceUseCase {
 
         if (!(location.province in Provinces)) {
             throw new Error("Invalid Province")
+        }
+        if (!(type in TypeDocument)) {
+            throw new Error("Invalid Type")
         }
         const disappearance = await this.disappearanceRepository.create({
             user_id,

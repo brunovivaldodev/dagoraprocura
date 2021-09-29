@@ -3,10 +3,11 @@ import Location from "./Location"
 import State from "./State"
 import { UuidProvider} from "../../../shared/providers/uuid/implemnetations/UuidProvider"
 import { Provinces } from "./Provinces"
+import TypeDocument from "./TypeDocument"
 
 class Disappearance {
     private id : string
-    private type : string
+    private type : TypeDocument
     private user_id : string
     private document : string
     private state : State
