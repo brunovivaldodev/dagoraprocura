@@ -8,7 +8,13 @@ class UserRespositoryFake implements IUserRepository {
     public UsersRepository: User[] = []
 
     public async create({ email, name, password }: ICreateUserDTO) {
-        const user = new User()
+        let user = await this.findByEmail(email)
+        
+        if (user) {
+            throw new Error("User already exists");
+        }
+        
+        user = new User()
 
         Object.assign(user, {
             name, email, password
