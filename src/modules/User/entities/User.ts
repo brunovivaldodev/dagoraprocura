@@ -11,6 +11,10 @@ class User {
         return this.email
     }
 
+    getId(){
+        return this.id
+    }
+
     constructor(){
         this.id = UuidProvider.uuid()
     }

@@ -5,7 +5,6 @@ import IUserRepository from "../IUserRepositories";
 
 class UserRespositoryFake implements IUserRepository {
 
-
     public UsersRepository: User[] = []
 
     public async create({ email, name, password }: ICreateUserDTO) {
@@ -20,8 +19,12 @@ class UserRespositoryFake implements IUserRepository {
         return user
     }
 
-    public async findByEmail(user_id: string): Promise<User | undefined> {
-        return this.UsersRepository.find((user) => user.getEmail() === user_id)
+    public async findByEmail(email: string): Promise<User | undefined> {
+        return this.UsersRepository.find((user) => user.getEmail() === email)
+    }
+
+    public async findById(user_id: string): Promise<User | undefined> {
+        return this.UsersRepository.find((user) => user.getId() === user_id)
     }
 }
 
