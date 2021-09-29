@@ -1,3 +1,4 @@
+import IUserRepository from "../../../User/repositories/IUserRepositories";
 import Disappearance from "../../entities/Disappearance";
 import DisappearancePlace from "../../entities/DisappearencePlace";
 import { Provinces } from "../../entities/Provinces";
@@ -18,10 +19,17 @@ interface IRequest {
 }
 
 export class CreateDisappearanceUseCase {
-    constructor(private disappearanceRepository: IDisappearanceRepository) { }
+    constructor(
+        private disappearanceRepository: IDisappearanceRepository,
+        private userRepository: IUserRepository
+    ) { }
 
     async execute({ type, user_id, disappearence_place, document, location, state }: IRequest): Promise<Disappearance> {
 
+        const findUser = await this.userRepository.findById(user_id)
+        if (!findUser) {
+            throw new Error("Cannot Create a Disappearance beacuse user not founded")
+        }
         if (!(location.province in Provinces)) {
             throw new Error("Invalid Province")
         }
