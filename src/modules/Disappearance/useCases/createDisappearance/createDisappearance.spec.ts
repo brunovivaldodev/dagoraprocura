@@ -39,6 +39,8 @@ describe("Create Disappearance", () => {
         expect(disapper).toHaveProperty("id")
         expect(disapper).toHaveProperty("location")
         expect(disapper.getState()).toBe("disappeared")
+        expect(disapper).toHaveProperty("created_at")
+        expect(disapper).toHaveProperty("updated_at")
 
     })
 
