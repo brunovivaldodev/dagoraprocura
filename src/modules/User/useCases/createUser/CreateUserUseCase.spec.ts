@@ -20,6 +20,13 @@ describe("Create User", () => {
         })
 
         expect(car).toHaveProperty("id")
+        expect(car).toHaveProperty("name")
+        expect(car).toHaveProperty("email")
+        expect(car).toHaveProperty("password")
+        expect(car).toHaveProperty("created_at")
+        expect(car).toHaveProperty("updated_at")
+
+
 
     })
 

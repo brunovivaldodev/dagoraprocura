@@ -6,6 +6,8 @@ class User {
     private name: string;
     private email: string;
     private password: string
+    private created_at : String
+    private updated_at : String
 
     getEmail(){
         return this.email
@@ -16,7 +18,9 @@ class User {
     }
 
     constructor(){
-        this.id = UuidProvider.uuid()
+        this.id = UuidProvider.uuid(),
+        this.created_at = new Date().toISOString()
+        this.updated_at = new Date().toISOString()
     }
 
 }
