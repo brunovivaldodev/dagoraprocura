@@ -7,7 +7,7 @@ class UserRespositoryFake implements IUserRepository {
 
     public UsersRepository: User[] = []
 
-    public async create({ email, name, password }: ICreateUserDTO) {
+    public async create({ email, name, password,number }: ICreateUserDTO) {
         let user = await this.findByEmail(email)
         
         if (user) {
@@ -17,7 +17,7 @@ class UserRespositoryFake implements IUserRepository {
         user = new User()
 
         Object.assign(user, {
-            name, email, password
+            name, email, password, number
         })
 
         this.UsersRepository.push(user)

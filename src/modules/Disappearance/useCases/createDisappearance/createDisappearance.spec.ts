@@ -20,7 +20,8 @@ describe("Create Disappearance", () => {
         user = await userRepository.create({
             name: "create user text",
             email: "createusertext@email.com",
-            password: "#########"
+            password: "#########",
+            number : 900000000
         })
     })
 

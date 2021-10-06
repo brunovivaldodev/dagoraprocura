@@ -16,9 +16,10 @@ describe("Create User", () => {
         const car = await createUserUseCase.execute({
             name: "Bruno Vivaldo",
             email: "brunolumeca@live.com",
-            password: "@sdf"
+            password: "@sdf",
+            number: 900000000
         })
-
+        console.log(car)
         expect(car).toHaveProperty("id")
         expect(car).toHaveProperty("name")
         expect(car).toHaveProperty("email")
@@ -37,13 +38,16 @@ describe("Create User", () => {
                 await createUserUseCase.execute({
                     name: "Bruno Vivaldo",
                     email: "brunolumecacf@live.com",
-                    password: "@sdf"
+                    password: "@sdf",
+                    number: 900000000
                 })
 
                 await createUserUseCase.execute({
                     name: "Bruno Vivaldo",
                     email: "brunolumecacf@live.com",
-                    password: "@sdf"
+                    password: "@sdf",
+                    number: 900000000
+
                 })
             }
         ).rejects.toThrow()
@@ -52,5 +56,5 @@ describe("Create User", () => {
 
     })
 
-   
+
 })

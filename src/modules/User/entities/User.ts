@@ -6,6 +6,7 @@ class User {
     private name: string;
     private email: string;
     private password: string
+    private number : number
     private created_at : String
     private updated_at : String
 
