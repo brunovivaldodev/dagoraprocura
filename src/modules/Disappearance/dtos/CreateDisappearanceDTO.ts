@@ -6,7 +6,6 @@ export interface CreateDisappearanceDTO {
     type: string
     user_id: string
     document: string
-    state: State
     disappearence_place: DisappearancePlace
     location: {
         district : string,

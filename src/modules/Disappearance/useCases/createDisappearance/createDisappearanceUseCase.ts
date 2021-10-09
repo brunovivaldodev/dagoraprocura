@@ -11,7 +11,6 @@ interface IRequest {
     user_id: string
     document: string
     disappearence_place: DisappearancePlace
-    state: State
     location: {
         district: string,
         province: string
@@ -24,7 +23,7 @@ export class CreateDisappearanceUseCase {
         private userRepository: IUserRepository
     ) { }
 
-    async execute({ type, user_id, disappearence_place, document, location, state }: IRequest): Promise<Disappearance> {
+    async execute({ type, user_id, disappearence_place, document, location }: IRequest): Promise<Disappearance> {
 
         const findUser = await this.userRepository.findById(user_id)
         if (!findUser) {
@@ -39,7 +38,6 @@ export class CreateDisappearanceUseCase {
         const disappearance = await this.disappearanceRepository.create({
             user_id,
             type,
-            state,
             location: { district: location.district, province: location.province as Provinces },
             document,
             disappearence_place,

@@ -34,7 +34,6 @@ describe("Create Disappearance", () => {
             document: "",
             disappearence_place: DisappearancePlace.taxi,
             location: { district: "Luanda", province: Provinces.Luanda },
-            state: State.disappeared
         })
 
         expect(disapper).toHaveProperty("id")
@@ -54,7 +53,6 @@ describe("Create Disappearance", () => {
                 document: "",
                 disappearence_place: DisappearancePlace.taxi,
                 location: { district: "Luanda", province: Provinces.Luanda },
-                state: State.disappeared
             })
         }).rejects.toThrowError(new Error("Cannot Create a Disappearance beacuse user not founded"))
     })
@@ -68,7 +66,6 @@ describe("Create Disappearance", () => {
                 document: "",
                 disappearence_place: DisappearancePlace.taxi,
                 location: { district: "Luanda", province: "Porto" },
-                state: State.disappeared
             })
         }
         ).rejects.toThrowError(new Error("Invalid Province"))
@@ -83,7 +80,6 @@ describe("Create Disappearance", () => {
                 document: "",
                 disappearence_place: DisappearancePlace.taxi,
                 location: { district: "Luanda", province: Provinces.Benguela },
-                state: State.disappeared
             })
         }
         ).rejects.toThrowError(new Error("Invalid Type"))
