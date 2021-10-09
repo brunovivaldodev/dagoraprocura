@@ -35,7 +35,7 @@ describe("Create Disappearance", () => {
             disappearence_place: DisappearancePlace.taxi,
             location: { district: "Luanda", province: Provinces.Luanda },
         })
-
+        console.log(disapper)
         expect(disapper).toHaveProperty("id")
         expect(disapper).toHaveProperty("location")
         expect(disapper.getState()).toBe("disappeared")
