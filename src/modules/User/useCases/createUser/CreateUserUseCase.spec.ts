@@ -19,7 +19,6 @@ describe("Create User", () => {
             password: "@sdf",
             number: 900000000
         })
-        console.log(car)
         expect(car).toHaveProperty("id")
         expect(car).toHaveProperty("name")
         expect(car).toHaveProperty("email")
