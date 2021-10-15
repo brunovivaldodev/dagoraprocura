@@ -14,8 +14,8 @@ class Disappearance {
     private Disappearance_Place : Disappearance_Place
     private location : Location 
     private message_sent : boolean
-    private created_at : String
-    private updated_at : String
+    private created_at : string
+    private updated_at : string
 
     constructor(district : string, province : Provinces) {
         this.id = UuidProvider.uuid()
@@ -32,6 +32,14 @@ class Disappearance {
 
     getState() : State{
         return this.state
+    }
+
+    getSentMessage() : boolean {
+        return this.message_sent
+    }
+
+    getCreatedDate () : string {
+        return this.created_at
     }
 
 }

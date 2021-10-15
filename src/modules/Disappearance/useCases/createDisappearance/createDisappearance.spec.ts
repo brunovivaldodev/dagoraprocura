@@ -2,7 +2,6 @@ import User from "../../../User/entities/User"
 import UserRespositoryFake from "../../../User/repositories/InMemory/UserRepositoryFake"
 import DisappearancePlace from "../../entities/DisappearencePlace"
 import { Provinces } from "../../entities/Provinces"
-import State from "../../entities/State"
 import { DisappearanceRepositoryFake } from "../../repositories/InMemory/DisappearanceRepositoryFake"
 import { CreateDisappearanceUseCase } from "./createDisappearanceUseCase"
 
