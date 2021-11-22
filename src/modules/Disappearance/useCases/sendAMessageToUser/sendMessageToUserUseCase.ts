@@ -1,18 +1,18 @@
 import { MessageBirdImplementation } from "../../../../shared/providers/messageProvider/implementations/messagebirdProvider";
-import { DisappearanceRepositoryFake } from "../../repositories/InMemory/DisappearanceRepositoryFake";
+import { IDisappearanceRepository } from "../../repositories/IDisappearanceRepository";
 
 
 export default class SendMessageToUserUseCase {
 
     constructor(
         private messageProvider: MessageBirdImplementation,
-        private disappearanceRepository : DisappearanceRepositoryFake
+        private disappearanceRepository: IDisappearanceRepository
     ) { }
 
-   async  execute( to: string[], body: string,) {
+    async execute(to: string[], body: string,) {
 
 
-        const t = await this.disappearanceRepository.findAllDisppearanceWithDatePassedAndStateDisappeared()
+        const t = await this.disappearanceRepository.findAllDisppearanceCreatedWithDatePassedAndStateDisappeared()
 
 
 

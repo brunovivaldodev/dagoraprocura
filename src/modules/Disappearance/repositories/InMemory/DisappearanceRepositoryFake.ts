@@ -5,13 +5,17 @@ import { IDisappearanceRepository } from "../IDisappearanceRepository";
 
 export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
-
-
+    
     public disappearanceRepository: Disappearance[] = []
-
+    
+    private readonly limitDay = 6;
 
     async getAll(): Promise<Disappearance[]> {
         return this.disappearanceRepository
+    }
+
+    async findAllDispearenceWithStateDispear(): Promise<Disappearance[] | undefined> {
+        return this.disappearanceRepository.filter(disapear => disapear.getState() === State.disappeared)
     }
 
     async create({ user_id, document, type, disappearence_place, location: { district, province } }: CreateDisappearanceDTO) {
@@ -33,25 +37,28 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
     }
 
-    async findAllDisppearanceWithDatePassedAndStateDisappeared(): Promise<Disappearance[]> {
+    public async filterPassedDate(dissaper: Disappearance) {
+        const dissaperDate = dissaper.getCreatedDate()
 
-        function Dated(dissaper: Disappearance) {
-            const dissaperDate = dissaper.getCreatedDate()
-            const dissaperday = new Date(dissaperDate).getDate()
-            const passedAWeek = dissaperday + 7
-            console.log(dissaperday)
-            console.log(passedAWeek)
-            const today = new Date().getDate()
+        const dissaperDateParsed = new Date(dissaperDate)
 
-            return passedAWeek > today
-        }
+        const dayOfDisapearance = dissaperDateParsed.getDate()
 
-        const disappearances = this.disappearanceRepository
-            .filter((disapear) => disapear.getSentMessage() === false)
-            .filter((disapear) => disapear.getState() === State.disappeared)
-            .filter(Dated)
+        const limitDay = dissaperDateParsed.setDate(dayOfDisapearance + 6)
 
-        return disappearances
+        return new Date().toLocaleDateString() === new Date(limitDay).toLocaleDateString()
+
+    }
+
+    async findAllDisppearanceCreatedWithDatePassedAndStateDisappeared(): Promise<Disappearance[]> {
+
+        const disappearance = this.disappearanceRepository
+            .filter(disapear => disapear.getState() === State.disappeared)
+            .filter(disapear => disapear.getSentMessage() === false)
+            .filter(this.filterPassedDate)
+
+        return disappearance
+
     }
 
 
