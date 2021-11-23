@@ -41,8 +41,8 @@ Requisitos Funcionais
 
 **Cadastrar Desaparecimento**
 
-*   **Com Recompensa**
-*   **Sem Recompensa**
+- [ ] **Com Recompensa**
+- [x] **Sem Recompensa**
 
   
 
