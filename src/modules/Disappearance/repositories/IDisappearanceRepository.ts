@@ -4,6 +4,7 @@ import Disappearance from "../entities/Disappearance";
 export interface IDisappearanceRepository {
     create(data: CreateDisappearanceDTO): Promise<Disappearance>
     findAllDisppearanceCreatedWithDatePassedAndStateDisappeared(): Promise<Disappearance[]>
+    findAllDisppearanceCreatedWithMessageSentAndStateDisappeared(): Promise<Disappearance[]>
     getAll(): Promise<Disappearance[]>
     findAllDispearenceWithStateDispear(): Promise<Disappearance[] | undefined>
 }

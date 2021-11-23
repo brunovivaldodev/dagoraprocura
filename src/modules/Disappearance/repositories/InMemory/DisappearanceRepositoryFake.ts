@@ -6,6 +6,7 @@ import { IDisappearanceRepository } from "../IDisappearanceRepository";
 export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
 
+
     public disappearanceRepository: Disappearance[] = []
 
     private readonly limitDay = 6;
@@ -18,7 +19,7 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
         return this.disappearanceRepository.filter(disapear => disapear.getState() === State.disappeared)
     }
 
-    async create({ user_id, document, type, disappearence_place, location: { district, province } ,contact}: CreateDisappearanceDTO) {
+    async create({ user_id, document, type, disappearence_place, location: { district, province }, contact }: CreateDisappearanceDTO) {
 
         const disappearance = new Disappearance(district, province)
 
@@ -60,6 +61,15 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
         return disappearance
 
+    }
+
+    public async findAllDisppearanceCreatedWithMessageSentAndStateDisappeared(): Promise<Disappearance[]> {
+
+        const disappearance = this.disappearanceRepository
+            .filter(disapear => disapear.getState() === State.disappeared)
+            .filter(disapear => disapear.getSentMessage() === true)
+
+        return disappearance
     }
 
 

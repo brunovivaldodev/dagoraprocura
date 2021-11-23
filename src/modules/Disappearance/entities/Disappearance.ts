@@ -38,11 +38,9 @@ class Disappearance {
     getSentMessage() : boolean {
         return this.message_sent
     }
-
     getCreatedDate () : string {
         return this.created_at
     }
-
     getContact () : number {
         return this.contact
     }
