@@ -10,5 +10,6 @@ export interface CreateDisappearanceDTO {
     location: {
         district : string,
         province : Provinces
-    }
+    },
+    contact : number
 }

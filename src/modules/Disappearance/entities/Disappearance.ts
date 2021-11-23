@@ -16,6 +16,7 @@ class Disappearance {
     private message_sent : boolean
     private created_at : string
     private updated_at : string
+    private contact : number
 
     constructor(district : string, province : Provinces) {
         this.id = UuidProvider.uuid()
@@ -40,6 +41,10 @@ class Disappearance {
 
     getCreatedDate () : string {
         return this.created_at
+    }
+
+    getContact () : number {
+        return this.contact
     }
 
 }

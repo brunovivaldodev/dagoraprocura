@@ -16,8 +16,6 @@ export class MessageBirdImplementation {
             if (err) {
                 return console.log(err);
             }
-            console.log(response);
-
         });
     }
 }

@@ -14,18 +14,19 @@ describe("Send A Message To User", () => {
             disappearence_place : DisappearancePlace.taxi,
             location : {district : "Maianga",province : Provinces.Luanda},
             document : "",
+            contact : 994322538,
         })
       
 
     })
 
-    it("should sent a message to user after 4 days when a Disappearance is created without updated state", () => {
+    it("should sent a message to user after 6 days when a Disappearance is created without updated state", async () => {
 
         const messageBird = new MessageBirdImplementation()
         const sendMessageToUser = new SendMessageToUserUseCase(messageBird, b)
 
 
-        sendMessageToUser.execute(["+244925767197"], "bruno bonito")
+        await sendMessageToUser.execute([process.env.MESSAGE_BIRD_NUMBER as string], "bruno bonito")
 
     })
 })

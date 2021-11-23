@@ -5,9 +5,9 @@ import { IDisappearanceRepository } from "../IDisappearanceRepository";
 
 export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
-    
+
     public disappearanceRepository: Disappearance[] = []
-    
+
     private readonly limitDay = 6;
 
     async getAll(): Promise<Disappearance[]> {
@@ -18,7 +18,7 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
         return this.disappearanceRepository.filter(disapear => disapear.getState() === State.disappeared)
     }
 
-    async create({ user_id, document, type, disappearence_place, location: { district, province } }: CreateDisappearanceDTO) {
+    async create({ user_id, document, type, disappearence_place, location: { district, province } ,contact}: CreateDisappearanceDTO) {
 
         const disappearance = new Disappearance(district, province)
 
@@ -27,6 +27,7 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
             document,
             user_id,
             type,
+            contact
         })
 
         disappearance.setLocation(district, province)
@@ -37,25 +38,25 @@ export class DisappearanceRepositoryFake implements IDisappearanceRepository {
 
     }
 
-    public async filterPassedDate(dissaper: Disappearance) {
+    private filterPassedDate(dissaper: Disappearance) {
         const dissaperDate = dissaper.getCreatedDate()
 
         const dissaperDateParsed = new Date(dissaperDate)
 
         const dayOfDisapearance = dissaperDateParsed.getDate()
 
-        const limitDay = dissaperDateParsed.setDate(dayOfDisapearance + 6)
+        const limitDay = dissaperDateParsed.setDate(dayOfDisapearance + this.limitDay)
 
         return new Date().toLocaleDateString() === new Date(limitDay).toLocaleDateString()
 
     }
 
-    async findAllDisppearanceCreatedWithDatePassedAndStateDisappeared(): Promise<Disappearance[]> {
+    public async findAllDisppearanceCreatedWithDatePassedAndStateDisappeared(): Promise<Disappearance[]> {
 
         const disappearance = this.disappearanceRepository
             .filter(disapear => disapear.getState() === State.disappeared)
             .filter(disapear => disapear.getSentMessage() === false)
-            .filter(this.filterPassedDate)
+            .filter(this.filterPassedDate.bind(this))
 
         return disappearance
 
