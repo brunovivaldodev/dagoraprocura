@@ -25,7 +25,11 @@ Requisitos Funcionais
 
   
 
-**Enviar uma mensagem para o usuário depois de 4 dias que registar um desaparecimento, se não mudar o estado para aparecido.**
+**Enviar uma mensagem para o usuário depois de 6 (n) dias que registar um desaparecimento, se não mudar o estado para aparecido.**
+
+  
+
+**Todos os que já receberam uma mensagem e o estado continua desaparecido recebem uma mensagem todos os domingos.**
 
   
 
