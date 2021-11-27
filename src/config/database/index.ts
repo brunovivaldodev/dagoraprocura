@@ -1,4 +1,7 @@
 import { createConnection } from "mysql2";
+import { config } from "dotenv"
+
+config()
 
 const conection = createConnection({
     host: process.env.DB_HOST,
@@ -6,6 +9,8 @@ const conection = createConnection({
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
 });
+
+console.log(process.env.DB_HOST, "teste")
 
 
 export { conection }
